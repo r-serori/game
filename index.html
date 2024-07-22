@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- タイトル画面 -->
+    <section class="title">
+      <div class="title-back-image">
+        <span class="rain"></span>
+        <div class="title-container">
+          <button
+            class="title-button quiz-game-button"
+            onclick="quizGame(this)"
+          >
+            <span>3択ゲーム</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ３択ゲーム選択画面 -->
+    <section class="quiz-game-title">
+      <div class="quiz-game-title-back-image">
+        <div class="title-container">
+          <button
+            id="quiz-game-button-easy"
+            class="quiz-game-title-button bordercenter"
+            onclick="quizGameEasy(this)"
+          >
+            <span>優しい</span>
+          </button>
+
+          <button
+            id="quiz-game-button-hard"
+            class="quiz-game-title-button bordercenter"
+            onclick="quizGameHard(this)"
+          >
+            <span>鬼</span>
+          </button>
+
+          <button
+            id="quiz-game-button-god"
+            class="quiz-game-title-button bordercenter"
+            onclick="quizGameGod(this)"
+          >
+            <span>神</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- クイズゲーム　優しい -->
+    <section class="easy-quiz">
+      <div class="backImage quiz-easy-back-image">
+        <div class="blackOut"></div>
+        <div class="clearContainer">
+          <div class="clear">Game Clear!!</div>
+          <button class="nextButton pushdown titleGo" onclick="titleGo(this)">
+            <span>タイトル画面へ</span>
+          </button>
+          <button
+            class="nextButton pushdown quizTitleGo"
+            onclick="quizTitleGo(this)"
+          >
+            <span>３択ゲームタイトルへ</span>
+          </button>
+        </div>
+
+        <div class="enemyLife-container">
+          <img class="life-img enemyLife-img" src="60045511life.png" alt="" />
+          <span class="enemyLife"></span>
+        </div>
+        <div class="myLife-container">
+          <img class="life-img myLife-img" src="60045511life.png" alt="" /><span
+            class="myLife"
+          ></span>
+        </div>
+        <div class="enemy easy-enemy"></div>
+
+        <div class="defenseContainer"></div>
+        <div class="attack-container">
+          <div class="explosions">
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+        <div class="correct-display" onclick="displayClick(this);">
+          <div class="corOrDiscor"></div>
+          <div class="because"></div>
+        </div>
+
+        <div class="timer"></div>
+        <div class="questions"></div>
+        <div class="answers">
+          <button
+            id="answer1"
+            class="answer"
+            onclick="quizGameCorrect(this);"
+          ></button>
+          <button
+            id="answer2"
+            class="answer"
+            onclick="quizGameCorrect(this);"
+          ></button>
+          <button
+            id="answer3"
+            class="answer"
+            onclick="quizGameCorrect(this);"
+          ></button>
+        </div>
+      </div>
+    </section>
+
+    <script src="main.js"></script>
+  </body>
+</html>

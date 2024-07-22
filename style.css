@@ -1,0 +1,721 @@
+@charset "utf-8";
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;1,200;1,300;1,400&family=Roboto+Slab:wght@100;200;300;400;500;600;700&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto Slab", serif;
+    user-select: none;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+}
+
+button {
+    all: unset;
+
+}
+
+/* タイトル画面　section title */
+
+.title {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    /* display: none; */
+}
+
+.rain {
+    position: absolute;
+    width: 2px;
+    height: 15px;
+    background: rgb(255, 255, 255, 0.3);
+    animation: rainy 2s linear;
+    transform: rotate(30deg);
+}
+
+@keyframes rainy {
+    0% {
+        top: 0px;
+    }
+
+    100% {
+        top: 100vh;
+        transform: translateX(-100px);
+    }
+}
+
+.title .title-back-image {
+    width: 100%;
+    height: 100vh;
+    background-image: url(aig-ai20221111457-xl_TP_V.webp);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.title-container {
+    width: 80%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    transform: translateX(-150px);
+}
+
+.title-button {
+    /*波紋の基点とするためrelativeを指定*/
+    position: relative;
+    /*はみ出す波紋を隠す*/
+    overflow: hidden;
+    /*ボタンの形状*/
+    text-decoration: none;
+    display: inline-block;
+    background: linear-gradient(rgb(3, 46, 9), rgb(4, 28, 15));
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    outline: none;
+    margin-top: 24px;
+    cursor: pointer;
+}
+
+.title-button::after {
+    content: "";
+    /*絶対配置で波紋位置を決める*/
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    /*波紋の形状*/
+    background: radial-gradient(circle, #fff 10%, transparent 10%) no-repeat 50%;
+    transform: scale(10, 10);
+    /*はじめは透過0に*/
+    opacity: 0;
+    /*アニメーションの設定*/
+    transition: transform 0.3s, opacity 1s;
+}
+
+
+.title-button:active::after {
+    transform: scale(0, 0);
+    transition: 0s;
+    opacity: 0.3;
+}
+
+
+
+
+
+
+
+/* クイズゲームタイトル */
+.quiz-game-title {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    display: none;
+}
+
+.shine {
+    position: absolute;
+    top: calc(50% - 20px);
+    left: calc(50% - 20px);
+    width: 2px;
+    height: 2px;
+    border-radius: 50%;
+    background-color: #fff;
+    box-shadow:
+        0 0 60px 30px #fff,
+        0 0 120px 60px #f0f,
+        0 0 100px 30px #0ff;
+    animation: shiny 1s linear;
+}
+
+@keyframes shiny {
+    0% {
+        opacity: 0;
+
+
+    }
+
+    20% {
+        opacity: .7;
+    }
+
+    80% {
+        opacity: .7;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.quiz-game-title .quiz-game-title-back-image {
+    width: 100%;
+    height: 100vh;
+    background-image: url(quizgame-titleimage.webp);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.quiz-game-title .title-container {
+    width: 80%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    transform: translateX(-150px);
+    z-index: 3;
+}
+
+.quiz-game-title-button {
+    /*線の基点とするためrelativeを指定*/
+    position: relative;
+    /*ボタンの形状*/
+    display: inline-block;
+    padding: 10px 30px;
+
+    color: #fff;
+    border: 1px solid #ccc;
+    text-decoration: none;
+    outline: none;
+    /*はみ出す背景色を隠す*/
+    overflow: hidden;
+    border-radius: 16px;
+    cursor: pointer;
+}
+
+/*hoverした際のボタンの形状*/
+.quiz-game-title-button:hover {
+    color: #ccc;
+    border-color: transparent;
+    /*色の変化を遅らせる*/
+    transition-delay: 0.6s;
+}
+
+/*線の設定*/
+.quiz-game-title-button span {
+    display: block;
+    z-index: 2;
+}
+
+/*== 線から塗に変化（中央から外） */
+
+/*線の設定*/
+.bordercenter span::before,
+.bordercenter span::after {
+    content: "";
+    /*絶対配置で線の位置を決める*/
+    position: absolute;
+    /*線の形状*/
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(#440505, #510303);
+    /*アニメーションの設定*/
+    transition: all 0.3s;
+    transform: scale(0, 1);
+    transform-origin: center;
+}
+
+/*上線*/
+.bordercenter span::before {
+    left: 0;
+    top: 0;
+}
+
+/*下線*/
+.bordercenter span::after {
+    left: 0;
+    bottom: 0;
+}
+
+/*hoverをすると線が伸びる*/
+.bordercenter:hover span::before,
+.bordercenter:hover span::after {
+    transform: scale(1, 1);
+}
+
+/*背景の設定*/
+.bordercenter::before {
+    content: "";
+    /*絶対配置で線の位置を決める*/
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    /*背景の形状*/
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(#440505, #510303);
+    /*アニメーションの設定*/
+    transition: all 0.3s;
+    transform: scale(0, 1);
+    transform-origin: center;
+}
+
+/*hoverをすると背景が伸びる*/
+.bordercenter:hover::before {
+    width: 100%;
+    /*0.4秒遅れてアニメーション*/
+    transition-delay: 0.4s;
+    transform: scale(1, 1);
+}
+
+
+
+
+
+
+/* クイズゲーム　戦闘 */
+/* 共通 */
+
+.enemyLife-container {
+    width: 150px;
+    height: 80px;
+    display: flex;
+    position: absolute;
+    top: 30px;
+    left: 30px;
+}
+
+.life-img {
+    width: 70px;
+    line-height: 80px;
+    padding: 10px;
+}
+
+.enemyLife {
+    font-size: 60px;
+    line-height: 80px;
+    color: red;
+    padding-left: 20px;
+}
+
+.myLife-container {
+    width: 150px;
+    height: 80px;
+    display: flex;
+    position: absolute;
+    bottom: 20px;
+    left: 30px;
+}
+
+.myLife {
+    font-size: 60px;
+    line-height: 80px;
+    color: red;
+    padding-left: 20px;
+}
+
+.enemy {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-110px, -100px);
+    height: 250px;
+    width: 250px;
+}
+
+.questions {
+    padding: 80px 48px;
+    width: 80%;
+    font-size: 48px;
+    font-weight: 700;
+    text-align: center;
+    color: #c36909;
+    display: block;
+    margin: 0 auto;
+
+}
+
+.answers {
+    display: block;
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    transform: translateX(-45%);
+    justify-content: space-between;
+    opacity: 1;
+}
+
+.answer {
+    display: block;
+    width: 20%;
+    font-size: 36px;
+    font-weight: 600;
+    color: #c36909;
+    text-align: center;
+    border-radius:16px;
+    padding: 4px 16px;
+    text-decoration: none;
+    cursor: pointer;
+}
+.answer:hover{
+    opacity: .5;
+    
+}
+.answer:active{
+    opacity: .2;
+    
+}
+
+
+.timer {
+    font-size: 60px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    color: red;
+}
+
+.correct-display {
+    display: none;
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(255, 255, 255, .8);
+    text-align: center;
+    flex-direction: column;
+    z-index: 3;
+}
+
+.corOrDiscor {
+    font-size: 120px;
+    font-weight: 800;
+    padding-top: 80px;
+    color: red;
+}
+
+.because {
+    font-size: 24px;
+    font-weight: 600;
+    margin-top: 60px;
+
+}
+
+
+.attack-container {
+    display: none;
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.explosions span {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    transform: scale(0);
+}
+
+.explosions span:nth-child(1) {
+    top: 45%;
+    left: 60%;
+    transform: translate(-170px, -100px);
+    animation: explosions-anim 2s 0s linear infinite,
+        color-anim 2s 0s linear infinite;
+}
+
+.explosions span:nth-child(2) {
+    top: 60%;
+    left: 40%;
+    animation: explosions-anim 2s 0.2s linear infinite,
+        color-anim 2s -1s linear infinite;
+}
+
+.explosions span:nth-child(3) {
+    top: 50%;
+    left: 35%;
+    animation: explosions-anim 2s 0.4s linear infinite,
+        color-anim 2s -2s linear infinite;
+}
+
+.explosions span:nth-child(4) {
+    top: 40%;
+    left: 65%;
+    animation: explosions-anim 2s 0.6s linear infinite,
+        color-anim 2s -3s linear infinite;
+}
+
+.explosions span:nth-child(5) {
+    top: 55%;
+    left: 45%;
+    animation: explosions-anim 2s 0.8s linear infinite,
+        color-anim 2s -4s linear infinite;
+}
+
+
+@keyframes explosions-anim {
+    0% {
+        transform: scale(0);
+    }
+
+    35% {
+        transform: scale(0);
+    }
+
+    49.9% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(0);
+    }
+
+    80% {
+        transform: scale(0);
+    }
+
+    99.9% {
+        transform: scale(2);
+    }
+
+    100% {
+        transform: scale(0);
+    }
+}
+
+
+@keyframes color-anim {
+
+    0%,
+    100% {
+        background: #c36909;
+    }
+
+    20% {
+        background: #682215;
+    }
+
+    40% {
+        background: #ff84ff;
+    }
+
+    60% {
+        background: red;
+    }
+
+    80% {
+        background: #d8d823;
+    }
+}
+
+.defenseContainer {
+    display: none;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-140px, -80px);
+    border-top: 1px solid rgba(255, 255, 255, .5);
+    border-left: 1px solid rgba(255, 255, 255, .5);
+    width: 280px;
+    height: 350px;
+    border-radius: 15px;
+    box-shadow: 20px 20px 50px rgba(0, 0, 0, .5);
+    background: rgba(255, 255, 255, .1);
+    backdrop-filter: blur(5px);
+    overflow: hidden;
+    backdrop-filter: blur(5px);
+    overflow: hidden;
+}
+
+.blackOut{
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    animation: out 3s forwards;
+    z-index: 5;
+}
+@keyframes out {
+    0%{
+background: rgba(0, 0, 0, .1);
+    }
+    20%{
+        background: rgba(0, 0, 0, .3);
+    }
+    100%{
+        background: #000;
+    }
+}
+
+
+
+
+/* 優しい */
+.easy-quiz {
+    display: none;
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.quiz-easy-back-image {
+    background-image: url(easy-quizgame-xl_TP_V.jpeg);
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.enemy.easy-enemy {
+    background-image: url(teki-easy-quiz_PSD.png);
+}
+
+/* 鬼 */
+.hard-quiz {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    display: none;
+}
+
+.quiz-hard-back-image {
+    background-image: url(nomal-quizgame_TP_V.webp);
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.enemy.hard-enemy {
+    background-image: url(teki-hard-quiz_e2.png);
+    transform: translate(-110px, -100px);
+    width: 300px;
+    height: 300px;
+}
+
+
+/* 神 */
+.god-quiz {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    display: none;
+}
+
+.quiz-god-back-image {
+    background-image: url(hora-god-quizgame-xl_TP_V.webp);
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.enemy.god-enemy {
+    background-image: url(teki-godquiz_1.png);
+    transform: translate(-110px, -100px);
+    width: 200px;
+    height: 200px;
+}
+
+
+/* clear */
+.clearContainer {
+    display: none;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, .8);
+    text-align: center;
+}
+
+.clear {
+    font-size: 5rem;
+    color: #ccc;
+    padding-top: 120px;
+}
+
+
+/* ボタン共通設定 */
+.nextButton {
+    margin: 180px 80px 0;
+    color: #fff;
+    /*影の基点とするためrelativeを指定*/
+    position: relative;
+    /*ボタンの形状*/
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    background: transparent;
+    border-radius: 25px;
+    border: solid 1px #333;
+    outline: none;
+    /*アニメーションの指定*/
+    transition: all 0.2s ease;
+}
+
+/*hoverをした後のボタンの形状*/
+.nextButton:hover {
+    border-color: transparent;
+}
+
+/*ボタンの中のテキスト*/
+.nextButton span {
+    position: relative;
+    z-index: 2;
+    /*z-indexの数値をあげて文字を背景よりも手前に表示*/
+    /*テキストの形状*/
+    display: block;
+    padding: 10px 30px;
+    background: #fff;
+    border-radius: 25px;
+    color: #333;
+    /*アニメーションの指定*/
+    transition: all 0.3s ease;
+}
+
+/*== 下に押し込まれる（立体が平面に） */
+
+/*影の設定*/
+.pushdown:before {
+    content: "";
+    /*絶対配置で影の位置を決める*/
+    position: absolute;
+    z-index: -1;
+    top: 4px;
+    left: 0;
+    /*影の形状*/
+    width: 100%;
+    height: 100%;
+    border-radius: 25px;
+    background-color: #333;
+}
+
+/*hoverの際にY軸に4pxずらす*/
+.pushdown:hover span {
+    background-color: #333;
+    color: #fff;
+    transform: translateY(4px);
+}
